@@ -2,6 +2,7 @@ package com.example.videoandroidappv1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.MediaController;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         VideoView myvideo = findViewById(R.id.videoOne);
 
-        String video = "android.resource://" + getPackageName() + "/" + R.raw.duck;
+        String video = "android.resource://" + getPackageName() + "/" + R.raw.flashlight;
         Uri uri = Uri.parse(video);
 
         myvideo.setVideoURI(uri);
@@ -24,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         myvideo.setMediaController(mediaController);
         mediaController.setAnchorView(myvideo);
+
+        myvideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                myvideo.start();
+            }
+        });
 
     }
 }
