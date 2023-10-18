@@ -22,5 +22,8 @@ public class MainActivity extends AppCompatActivity {
         myvideo.setVideoURI(uri);
 
         MediaController mediaController = new MediaController(this);
+        myvideo.setMediaController(mediaController);
+        mediaController.setAnchorView(myvideo);
+
     }
 }
